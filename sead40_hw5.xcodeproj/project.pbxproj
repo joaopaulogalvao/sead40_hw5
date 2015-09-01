@@ -33,6 +33,7 @@
 		6CB428231B96271B00786ADD /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB428221B96271B00786ADD /* libsqlite3.dylib */; };
 		6CB428261B96273E00786ADD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB428241B96273400786ADD /* Accounts.framework */; };
 		6CB428291B96275500786ADD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB428271B96274800786ADD /* Social.framework */; };
+		6CB428311B966EC000786ADD /* Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428301B966EC000786ADD /* Keys.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +82,8 @@
 		6CB428221B96271B00786ADD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6CB428241B96273400786ADD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		6CB428271B96274800786ADD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		6CB4282A1B9627C100786ADD /* Keys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
+		6CB4282B1B96672700786ADD /* Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
+		6CB428301B966EC000786ADD /* Keys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keys.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,13 +182,14 @@
 		6CB427F61B95207700786ADD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6CB4282A1B9627C100786ADD /* Keys.h */,
 				6CB427FA1B9524C400786ADD /* Person.h */,
 				6CB427FB1B9524C400786ADD /* Person.m */,
 				6CB428031B960E6000786ADD /* Queue.h */,
 				6CB428041B960E6000786ADD /* Queue.m */,
 				6CB428061B96150400786ADD /* Stack.h */,
 				6CB428071B96150400786ADD /* Stack.m */,
+				6CB4282B1B96672700786ADD /* Keys.h */,
+				6CB428301B966EC000786ADD /* Keys.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CB428311B966EC000786ADD /* Keys.m in Sources */,
 				6CB428081B96150400786ADD /* Stack.m in Sources */,
 				6CB428051B960E6000786ADD /* Queue.m in Sources */,
 				6CB427D71B9509D600786ADD /* ViewController.m in Sources */,

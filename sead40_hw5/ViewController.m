@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
+-(void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGesture;
+
 @end
 
 @implementation ViewController
@@ -44,6 +46,13 @@
   //Show user location on the map
   self.mapView.showsUserLocation = YES;
   
+  //Add Gesture recognizer
+  UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+  
+  longPressGestureRecognizer.minimumPressDuration = 0.7;
+
+  [self.mapView addGestureRecognizer:longPressGestureRecognizer];
+  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,6 +78,12 @@
 - (IBAction)showSydney:(id)sender {
   
   [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(-33.8650, 151.2094), 100000, 100000) animated:true];
+  
+}
+
+-(void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGesture{
+  
+  NSLog(@"long press gesture");
   
 }
 

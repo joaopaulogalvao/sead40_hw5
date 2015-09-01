@@ -10,4 +10,17 @@
 
 @implementation Person
 
+
+
+-(instancetype)initWithName:(NSString *)locationName {
+  
+  if (self = [super init]) {
+    _locationName = locationName;
+    
+  }
+  return self;
+  
+}
+
+
 @end

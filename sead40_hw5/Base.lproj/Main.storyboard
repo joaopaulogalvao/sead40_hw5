@@ -18,14 +18,28 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6HE-VI-9FY">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                             </mapView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Qn-Kh-qPW">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Los Angeles" id="bky-xu-IW7"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="UMw-GV-l79"/>
+                                    <barButtonItem title="Seattle" id="cgL-TP-p9x"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7O6-t8-OdY"/>
+                                    <barButtonItem title="Sydney" id="5OB-Lt-vta"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="1Qn-Kh-qPW" secondAttribute="trailing" constant="-16" id="2HN-PZ-Xup"/>
+                            <constraint firstItem="1Qn-Kh-qPW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="2tM-Gd-297"/>
+                            <constraint firstItem="1Qn-Kh-qPW" firstAttribute="top" secondItem="6HE-VI-9FY" secondAttribute="bottom" id="3HK-eR-il9"/>
                             <constraint firstItem="6HE-VI-9FY" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="86b-de-wTT"/>
                             <constraint firstItem="6HE-VI-9FY" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="VeL-Dn-6O6"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="6HE-VI-9FY" secondAttribute="bottom" id="fEW-C7-jjB"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="6HE-VI-9FY" secondAttribute="bottom" constant="44" id="fEW-C7-jjB"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="1Qn-Kh-qPW" secondAttribute="bottom" id="gad-JQ-OS2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6HE-VI-9FY" secondAttribute="trailing" constant="-16" id="nPY-rR-Uhr"/>
                         </constraints>
                     </view>

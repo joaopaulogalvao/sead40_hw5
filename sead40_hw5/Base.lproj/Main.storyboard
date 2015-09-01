@@ -23,11 +23,23 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Qn-Kh-qPW">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Los Angeles" id="bky-xu-IW7"/>
+                                    <barButtonItem title="Los Angeles" id="bky-xu-IW7">
+                                        <connections>
+                                            <action selector="showLA:" destination="vXZ-lx-hvc" id="baf-23-fXk"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="UMw-GV-l79"/>
-                                    <barButtonItem title="Seattle" id="cgL-TP-p9x"/>
+                                    <barButtonItem title="Seattle" id="cgL-TP-p9x">
+                                        <connections>
+                                            <action selector="showSeattle:" destination="vXZ-lx-hvc" id="gBq-3p-Dd2"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="7O6-t8-OdY"/>
-                                    <barButtonItem title="Sydney" id="5OB-Lt-vta"/>
+                                    <barButtonItem title="Sydney" id="5OB-Lt-vta">
+                                        <connections>
+                                            <action selector="showSydney:" destination="vXZ-lx-hvc" id="cib-sX-4U6"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -43,6 +55,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="6HE-VI-9FY" secondAttribute="trailing" constant="-16" id="nPY-rR-Uhr"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="6HE-VI-9FY" id="5Q8-d6-AB3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

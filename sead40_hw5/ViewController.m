@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import <MapKit/MapKit.h>
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
 
@@ -24,4 +27,12 @@
   // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)showLA:(id)sender {
+}
+
+- (IBAction)showSeattle:(id)sender {
+}
+
+- (IBAction)showSydney:(id)sender {
+}
 @end

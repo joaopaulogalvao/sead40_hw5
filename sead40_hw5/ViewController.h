@@ -10,6 +10,9 @@
 
 @interface ViewController : UIViewController
 
+- (IBAction)showLA:(id)sender;
+- (IBAction)showSeattle:(id)sender;
+- (IBAction)showSydney:(id)sender;
 
 @end
 

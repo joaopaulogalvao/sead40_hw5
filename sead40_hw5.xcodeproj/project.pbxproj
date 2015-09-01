@@ -21,6 +21,7 @@
 		6CB428021B9525D400786ADD /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB428011B9525D400786ADD /* ParseUI.framework */; };
 		6CB428051B960E6000786ADD /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428041B960E6000786ADD /* Queue.m */; };
 		6CB428081B96150400786ADD /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428071B96150400786ADD /* Stack.m */; };
+		6CB4280A1B961BF900786ADD /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB428091B961BF900786ADD /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		6CB428041B960E6000786ADD /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		6CB428061B96150400786ADD /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
 		6CB428071B96150400786ADD /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
+		6CB428091B961BF900786ADD /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CB4280A1B961BF900786ADD /* CoreLocation.framework in Frameworks */,
 				6CB428001B9525C800786ADD /* Bolts.framework in Frameworks */,
 				6CB427FE1B9525C000786ADD /* Parse.framework in Frameworks */,
 				6CB428021B9525D400786ADD /* ParseUI.framework in Frameworks */,
@@ -174,6 +177,7 @@
 		6CB427F91B9520C000786ADD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6CB428091B961BF900786ADD /* CoreLocation.framework */,
 				6CB428011B9525D400786ADD /* ParseUI.framework */,
 				6CB427FF1B9525C800786ADD /* Bolts.framework */,
 				6CB427FD1B9525C000786ADD /* Parse.framework */,

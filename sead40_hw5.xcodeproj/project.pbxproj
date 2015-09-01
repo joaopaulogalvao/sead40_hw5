@@ -19,6 +19,8 @@
 		6CB427FE1B9525C000786ADD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB427FD1B9525C000786ADD /* Parse.framework */; };
 		6CB428001B9525C800786ADD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB427FF1B9525C800786ADD /* Bolts.framework */; };
 		6CB428021B9525D400786ADD /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB428011B9525D400786ADD /* ParseUI.framework */; };
+		6CB428051B960E6000786ADD /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428041B960E6000786ADD /* Queue.m */; };
+		6CB428081B96150400786ADD /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428071B96150400786ADD /* Stack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		6CB427FD1B9525C000786ADD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		6CB427FF1B9525C800786ADD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		6CB428011B9525D400786ADD /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		6CB428031B960E6000786ADD /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		6CB428041B960E6000786ADD /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		6CB428061B96150400786ADD /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
+		6CB428071B96150400786ADD /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,10 @@
 			children = (
 				6CB427FA1B9524C400786ADD /* Person.h */,
 				6CB427FB1B9524C400786ADD /* Person.m */,
+				6CB428031B960E6000786ADD /* Queue.h */,
+				6CB428041B960E6000786ADD /* Queue.m */,
+				6CB428061B96150400786ADD /* Stack.h */,
+				6CB428071B96150400786ADD /* Stack.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -277,6 +287,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CB428081B96150400786ADD /* Stack.m in Sources */,
+				6CB428051B960E6000786ADD /* Queue.m in Sources */,
 				6CB427D71B9509D600786ADD /* ViewController.m in Sources */,
 				6CB427D41B9509D600786ADD /* AppDelegate.m in Sources */,
 				6CB427FC1B9524C400786ADD /* Person.m in Sources */,

@@ -82,7 +82,6 @@
   
 }
 
-
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
   
   if (status==3) {

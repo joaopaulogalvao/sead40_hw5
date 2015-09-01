@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import <MapKit/MapKit.h>
+#import <ParseUI/ParseUI.h>
+#import <Parse/Parse.h>
+
 
 @interface ViewController ()
 
@@ -20,6 +23,11 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
+  
+  //Test Parse
+  PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+  testObject[@"foo"] = @"bar";
+  [testObject saveInBackground];
   
   //Init Location Manager
   self.locationManager = [[CLLocationManager alloc]init];

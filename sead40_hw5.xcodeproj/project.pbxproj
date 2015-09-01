@@ -15,6 +15,10 @@
 		6CB427DF1B9509D600786ADD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CB427DD1B9509D600786ADD /* LaunchScreen.xib */; };
 		6CB427EB1B9509D600786ADD /* sead40_hw5Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB427EA1B9509D600786ADD /* sead40_hw5Tests.m */; };
 		6CB427F51B950C6E00786ADD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB427F41B950C6E00786ADD /* MapKit.framework */; };
+		6CB427FC1B9524C400786ADD /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB427FB1B9524C400786ADD /* Person.m */; };
+		6CB427FE1B9525C000786ADD /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB427FD1B9525C000786ADD /* Parse.framework */; };
+		6CB428001B9525C800786ADD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB427FF1B9525C800786ADD /* Bolts.framework */; };
+		6CB428021B9525D400786ADD /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB428011B9525D400786ADD /* ParseUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +46,11 @@
 		6CB427E91B9509D600786ADD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CB427EA1B9509D600786ADD /* sead40_hw5Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sead40_hw5Tests.m; sourceTree = "<group>"; };
 		6CB427F41B950C6E00786ADD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6CB427FA1B9524C400786ADD /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		6CB427FB1B9524C400786ADD /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		6CB427FD1B9525C000786ADD /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		6CB427FF1B9525C800786ADD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		6CB428011B9525D400786ADD /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CB428001B9525C800786ADD /* Bolts.framework in Frameworks */,
+				6CB427FE1B9525C000786ADD /* Parse.framework in Frameworks */,
+				6CB428021B9525D400786ADD /* ParseUI.framework in Frameworks */,
 				6CB427F51B950C6E00786ADD /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +137,8 @@
 		6CB427F61B95207700786ADD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6CB427FA1B9524C400786ADD /* Person.h */,
+				6CB427FB1B9524C400786ADD /* Person.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -150,6 +164,9 @@
 		6CB427F91B9520C000786ADD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6CB428011B9525D400786ADD /* ParseUI.framework */,
+				6CB427FF1B9525C800786ADD /* Bolts.framework */,
+				6CB427FD1B9525C000786ADD /* Parse.framework */,
 				6CB427F41B950C6E00786ADD /* MapKit.framework */,
 			);
 			name = Frameworks;
@@ -262,6 +279,7 @@
 			files = (
 				6CB427D71B9509D600786ADD /* ViewController.m in Sources */,
 				6CB427D41B9509D600786ADD /* AppDelegate.m in Sources */,
+				6CB427FC1B9524C400786ADD /* Person.m in Sources */,
 				6CB427D11B9509D600786ADD /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +406,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/sead40_hw5",
+				);
 				INFOPLIST_FILE = sead40_hw5/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -398,6 +420,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/sead40_hw5",
+				);
 				INFOPLIST_FILE = sead40_hw5/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -81,6 +81,7 @@
 		6CB428221B96271B00786ADD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		6CB428241B96273400786ADD /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		6CB428271B96274800786ADD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		6CB4282A1B9627C100786ADD /* Keys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +180,7 @@
 		6CB427F61B95207700786ADD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6CB4282A1B9627C100786ADD /* Keys.h */,
 				6CB427FA1B9524C400786ADD /* Person.h */,
 				6CB427FB1B9524C400786ADD /* Person.m */,
 				6CB428031B960E6000786ADD /* Queue.h */,

@@ -10,4 +10,10 @@
 
 @interface Stack : NSObject
 
+-(void)push:(id)myObject;
+-(id)pop;
+
+@property(nonatomic, strong) NSMutableArray *myStackArray;
+@property(nonatomic)NSInteger count;
+
 @end

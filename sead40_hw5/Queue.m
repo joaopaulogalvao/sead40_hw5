@@ -23,6 +23,7 @@
 -(void)enqueue:(id)myObject{
   
   [self.myArray addObject:myObject];
+  self.count = self.myArray.count;
   
 }
 
@@ -35,7 +36,7 @@
     //Get the object with index 0
     object = [self.myArray objectAtIndex:0];
     
-    //Remove this object(FIFO)
+    //Remove this first object(FIFO)
     [self.myArray removeObjectAtIndex:0];
     
     //Count again

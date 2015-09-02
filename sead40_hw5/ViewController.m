@@ -160,10 +160,12 @@
   pinView.animatesDrop = true;
   
   //Change its color
-  pinView.pinColor = MKPinAnnotationColorPurple;
+  pinView.pinColor = MKPinAnnotationColorRed;
   
   //Show a callout
   pinView.canShowCallout = true;
+  
+  pinView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeContactAdd];
   
   return pinView;
   
@@ -171,6 +173,11 @@
 
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
   
+  NSLog(@"clicked");
+  
+  UIViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:@"reminderView"];
+  
+  [self.navigationController pushViewController:detail animated:true];
   
   
 }

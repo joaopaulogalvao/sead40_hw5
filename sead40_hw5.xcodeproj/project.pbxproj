@@ -34,6 +34,7 @@
 		6CB428261B96273E00786ADD /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB428241B96273400786ADD /* Accounts.framework */; };
 		6CB428291B96275500786ADD /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB428271B96274800786ADD /* Social.framework */; };
 		6CB428311B966EC000786ADD /* Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428301B966EC000786ADD /* Keys.m */; };
+		6CB428341B9754FF00786ADD /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428331B9754FF00786ADD /* ReminderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		6CB428271B96274800786ADD /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		6CB4282B1B96672700786ADD /* Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
 		6CB428301B966EC000786ADD /* Keys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keys.m; sourceTree = "<group>"; };
+		6CB428321B9754FF00786ADD /* ReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderViewController.h; sourceTree = "<group>"; };
+		6CB428331B9754FF00786ADD /* ReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,8 @@
 			children = (
 				6CB427D51B9509D600786ADD /* ViewController.h */,
 				6CB427D61B9509D600786ADD /* ViewController.m */,
+				6CB428321B9754FF00786ADD /* ReminderViewController.h */,
+				6CB428331B9754FF00786ADD /* ReminderViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CB428341B9754FF00786ADD /* ReminderViewController.m in Sources */,
 				6CB428311B966EC000786ADD /* Keys.m in Sources */,
 				6CB428081B96150400786ADD /* Stack.m in Sources */,
 				6CB428051B960E6000786ADD /* Queue.m in Sources */,

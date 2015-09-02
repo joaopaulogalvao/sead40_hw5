@@ -73,7 +73,7 @@
 
 - (IBAction)showSeattle:(id)sender {
   
-  [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(47.6097, -122.3331), 100000, 100000) animated:true];
+  [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude), 10000, 10000) animated:true];
   
 }
 
@@ -86,20 +86,28 @@
 -(void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGesture{
   
   NSLog(@"long press gesture");
+  //Check if the gesture began
   if (self.longPressGestureRecognizer.state != UIGestureRecognizerStateBegan) {
     return;
   }
   
+  //Make a point when the map is touched
   CGPoint longPoint = [self.longPressGestureRecognizer locationInView:self.mapView];
   
+  //Convert a point to coordinate
   CLLocationCoordinate2D coordinate = [self.mapView convertPoint:longPoint toCoordinateFromView:self.mapView];
   
   //NSUInteger numberOfTouches = [self.longPressGestureRecognizer numberOfTouches];
   
-  
+  //Log coord infos
   NSLog(@"Long press location was %.0f, %.0f", longPoint.x, longPoint.y);
   NSLog(@"World coordinate was longitude %f, latitude %f", coordinate.longitude, coordinate.latitude);
   
+  //Place a pin on the map
+  MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+  annotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
+  annotation.title = @"My last location";
+  [self.mapView addAnnotation:annotation];
   
   
   
@@ -126,6 +134,34 @@
 
 #pragma mark - MKMapViewDelegate
 
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+  
+  //Don't show annotation for current user
+  if ([annotation isKindOfClass:[MKUserLocation class]]) {
+    return nil;
+  }
+  
+  //Create a pinView
+  MKPinAnnotationView *pinView =(MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"AnnotationView"];
+  pinView.annotation = annotation;
+  
+  //Initialize the annotation
+  if (!pinView) {
+    pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"AnnotationView"];
+  }
+  
+  //Drop a pinView
+  pinView.animatesDrop = true;
+  
+  //Change its color
+  pinView.pinColor = MKPinAnnotationColorPurple;
+  
+  //Show a callout
+  pinView.canShowCallout = true;
+  
+  return pinView;
+  
+}
 
 
 

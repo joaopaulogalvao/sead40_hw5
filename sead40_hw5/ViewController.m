@@ -121,7 +121,13 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
   
+  //Set to store only significant location changes in Parse
+  CLLocation *location = locations.lastObject;
+  NSLog(@"lat: %f, long: %f, speed: %f",location.coordinate.latitude, location.coordinate.longitude, location.speed);
+  
 }
+
+
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
   
@@ -160,6 +166,12 @@
   pinView.canShowCallout = true;
   
   return pinView;
+  
+}
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
+  
+  
   
 }
 

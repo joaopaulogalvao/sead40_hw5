@@ -27,6 +27,13 @@
   [super viewDidLoad];
   // Do any additional setup after loading the view, typically from a nib.
   
+  UIBarButtonItem *barButtonAddReminder = [[UIBarButtonItem alloc]init];
+  
+  
+  //self.navigationItem.leftBarButtonItem = barButtonAddReminder;
+  self.navigationController.navigationItem.leftBarButtonItem = barButtonAddReminder;
+  
+  
   //Test Parse
   PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
   testObject[@"foo"] = @"bar";
@@ -106,7 +113,7 @@
   //Place a pin on the map
   MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
   annotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
-  annotation.title = @"My last location";
+  annotation.title = @"My reminder";
   [self.mapView addAnnotation:annotation];
   
   
@@ -123,6 +130,11 @@
   
   //Set to store only significant location changes in Parse
   CLLocation *location = locations.lastObject;
+//  NSString *coordinateString = [NSString stringWithFormat:@"%f %f",location.coordinate.latitude,location.coordinate.longitude];
+//  NSData *coordinateData = [coordinateString dataUsingEncoding:NSUTF8StringEncoding];
+  
+  // this data will come back as data, and I convert it as a string to get back from Kinesis.
+  
   NSLog(@"lat: %f, long: %f, speed: %f",location.coordinate.latitude, location.coordinate.longitude, location.speed);
   
 }
@@ -175,9 +187,11 @@
   
   NSLog(@"clicked");
   
-  UIViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:@"reminderView"];
+  [self performSegueWithIdentifier:@"toDetail" sender:self];
   
-  [self.navigationController pushViewController:detail animated:true];
+//  UIViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:@"reminderView"];
+//  
+//  [self.navigationController pushViewController:detail animated:true];
   
   
 }

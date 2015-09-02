@@ -14,6 +14,7 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 -(void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGesture;
@@ -36,6 +37,7 @@
   
   //Set the delegate
   self.locationManager.delegate = self;
+  self.mapView.delegate = self;
   
   //After checking the location fires the delegate method didChangeAuthorizationStatus
   [self.locationManager requestWhenInUseAuthorization];
@@ -47,11 +49,11 @@
   self.mapView.showsUserLocation = YES;
   
   //Add Gesture recognizer
-  UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+  self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
   
-  longPressGestureRecognizer.minimumPressDuration = 0.7;
+  self.longPressGestureRecognizer.minimumPressDuration = 0.7;
 
-  [self.mapView addGestureRecognizer:longPressGestureRecognizer];
+  [self.mapView addGestureRecognizer:self.longPressGestureRecognizer];
   
 }
 
@@ -84,6 +86,22 @@
 -(void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGesture{
   
   NSLog(@"long press gesture");
+  if (self.longPressGestureRecognizer.state != UIGestureRecognizerStateBegan) {
+    return;
+  }
+  
+  CGPoint longPoint = [self.longPressGestureRecognizer locationInView:self.mapView];
+  
+  CLLocationCoordinate2D coordinate = [self.mapView convertPoint:longPoint toCoordinateFromView:self.mapView];
+  
+  //NSUInteger numberOfTouches = [self.longPressGestureRecognizer numberOfTouches];
+  
+  
+  NSLog(@"Long press location was %.0f, %.0f", longPoint.x, longPoint.y);
+  NSLog(@"World coordinate was longitude %f, latitude %f", coordinate.longitude, coordinate.latitude);
+  
+  
+  
   
 }
 
@@ -105,6 +123,9 @@
   }
   
 }
+
+#pragma mark - MKMapViewDelegate
+
 
 
 

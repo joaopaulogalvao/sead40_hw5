@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface ViewController : UIViewController<CLLocationManagerDelegate,UIGestureRecognizerDelegate>
+@interface ViewController : UIViewController<CLLocationManagerDelegate,UIGestureRecognizerDelegate, MKMapViewDelegate>
 
 
 @property(nonatomic, strong)CLLocationManager *locationManager;
+
 - (IBAction)showLA:(id)sender;
 - (IBAction)showSeattle:(id)sender;
 - (IBAction)showSydney:(id)sender;

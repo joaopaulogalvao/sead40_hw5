@@ -10,6 +10,7 @@
 #import "Keys.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import "Reminder.h"
 
 @interface AppDelegate ()
 
@@ -22,6 +23,7 @@
   // Override point for customization after application launch.
   
   
+  [Reminder registerSubclass];
   
   // Initialize Parse.
   [Parse setApplicationId:kApplicationID

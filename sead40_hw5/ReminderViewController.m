@@ -7,6 +7,7 @@
 //
 
 #import "ReminderViewController.h"
+#import "Reminder.h"
 
 @interface ReminderViewController ()
 
@@ -17,6 +18,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+  
+  //Move to ReminderViewController
+  //Takes the place of PFObject, objectWithName
+  Reminder *reminder = [Reminder object];
+  reminder.name = @"Pizza";
+  [reminder saveInBackground];
+  
+  PFQuery *pizzaQuery = [Reminder query];
+  [pizzaQuery findObjectsInBackgroundWithBlock:^(NSArray *reminders, NSError *error) {
+    Reminder *firstReminder = [reminders firstObject];
+    NSLog(@"%@",firstReminder.name);
+  }];
+  
+  if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(47.6235, -122.3363) radius:200 identifier:@"Code Fellows"];
+    //[self.locationManager startMonitoringForREgion: region];
+    
+    
+  }
+
 }
 
 - (void)didReceiveMemoryWarning {

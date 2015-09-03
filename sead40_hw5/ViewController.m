@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import <ParseUI/ParseUI.h>
 #import <Parse/Parse.h>
+#import "Reminder.h"
 
 
 @interface ViewController ()
@@ -47,7 +48,7 @@
   self.mapView.delegate = self;
   
   //After checking the location fires the delegate method didChangeAuthorizationStatus
-  [self.locationManager requestWhenInUseAuthorization];
+  [self.locationManager requestWhenInUseAuthorization]; // change to always
   
   //Update location
   [self.locationManager startUpdatingLocation];
@@ -61,6 +62,7 @@
   self.longPressGestureRecognizer.minimumPressDuration = 0.7;
 
   [self.mapView addGestureRecognizer:self.longPressGestureRecognizer];
+  
   
 }
 
@@ -130,10 +132,28 @@
   
   //Set to store only significant location changes in Parse
   CLLocation *location = locations.lastObject;
-//  NSString *coordinateString = [NSString stringWithFormat:@"%f %f",location.coordinate.latitude,location.coordinate.longitude];
-//  NSData *coordinateData = [coordinateString dataUsingEncoding:NSUTF8StringEncoding];
+  
+  NSString *coordinateString = [NSString stringWithFormat:@"%f %f",location.coordinate.latitude,location.coordinate.longitude];
+  
+  NSData *coordinateData = [coordinateString dataUsingEncoding:NSUTF8StringEncoding];
   
   // this data will come back as data, and I convert it as a string to get back from Kinesis.
+  
+  NSMutableDictionary *coorDict = [[NSMutableDictionary alloc] init];
+  
+  [coorDict setValue:[NSNumber numberWithDouble:location.coordinate.latitude] forKey:@"latitude"];
+  [coorDict setValue:[NSNumber numberWithDouble:location.coordinate.latitude] forKey:@"longitude"];
+  
+  coordinateData = [NSJSONSerialization dataWithJSONObject:coorDict options:NSJSONWritingPrettyPrinted error:nil];
+  
+//  NSMutableDictionary *dict = [NSJSONSerialization JSONObjectWithData:coordinateData options:NSJSONReadingMutableContainers error:nil];
+  
+  //NSMutableArray *arr = [[NSMutableArray alloc] initWithObjects:location, nil];
+  
+  //NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+  //[dict setValue:arr forKey:@"locations"];
+  
+  NSLog(@"JSON representation for dictionary is %@",coorDict);
   
   NSLog(@"lat: %f, long: %f, speed: %f",location.coordinate.latitude, location.coordinate.longitude, location.speed);
   
@@ -188,11 +208,7 @@
   NSLog(@"clicked");
   
   [self performSegueWithIdentifier:@"toDetail" sender:self];
-  
-//  UIViewController *detail = [self.storyboard instantiateViewControllerWithIdentifier:@"reminderView"];
-//  
-//  [self.navigationController pushViewController:detail animated:true];
-  
+    
   
 }
 

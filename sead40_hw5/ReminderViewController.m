@@ -44,7 +44,7 @@
   //Save Point location to Parse
   Reminder *reminder = [Reminder object];
   reminder.name = @"My reminder";
-  reminder.reminderCoord = [PFGeoPoint geoPointWithLatitude:reminder.reminderCoord.latitude longitude:reminder.reminderCoord.longitude];
+  reminder.reminderCoord = [PFGeoPoint geoPointWithLatitude:self.myTappedCoord.latitude longitude:self.myTappedCoord.longitude];
   
   NSLog(@"Fired notification coord: %@",reminder.reminderCoord);
   
@@ -57,7 +57,7 @@
   
   if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
     
-    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(reminder.reminderCoord.latitude, reminder.reminderCoord.longitude) radius:200 identifier:@"Entered Region"];
+    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(self.myTappedCoord.latitude, self.myTappedCoord.longitude) radius:200 identifier:@"Entered Region"];
     
     [self.locationManager startMonitoringForRegion:region];
     

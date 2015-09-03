@@ -8,6 +8,9 @@
 
 #import "Reminder.h"
 
+@interface Reminder()
+
+@end
 
 @implementation Reminder
 

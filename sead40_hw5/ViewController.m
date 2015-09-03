@@ -11,6 +11,7 @@
 #import <ParseUI/ParseUI.h>
 #import <Parse/Parse.h>
 #import "Reminder.h"
+#import "Constants.h"
 
 
 @interface ViewController ()
@@ -33,12 +34,6 @@
   
   //self.navigationItem.leftBarButtonItem = barButtonAddReminder;
   self.navigationController.navigationItem.leftBarButtonItem = barButtonAddReminder;
-  
-  
-  //Test Parse
-  PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-  testObject[@"foo"] = @"bar";
-  [testObject saveInBackground];
   
   //Init Location Manager
   self.locationManager = [[CLLocationManager alloc]init];
@@ -206,6 +201,9 @@
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
   
   NSLog(@"clicked");
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Data" forKey:@"Hello"];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotification object:self userInfo:userInfo];
   
   [self performSegueWithIdentifier:@"toDetail" sender:self];
     

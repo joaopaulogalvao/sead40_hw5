@@ -36,6 +36,7 @@
 		6CB428311B966EC000786ADD /* Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428301B966EC000786ADD /* Keys.m */; };
 		6CB428341B9754FF00786ADD /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428331B9754FF00786ADD /* ReminderViewController.m */; };
 		6CB428371B979A5800786ADD /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428361B979A5800786ADD /* Reminder.m */; };
+		6CB4283A1B97F42D00786ADD /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB428391B97F42D00786ADD /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		6CB428331B9754FF00786ADD /* ReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderViewController.m; sourceTree = "<group>"; };
 		6CB428351B979A5800786ADD /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
 		6CB428361B979A5800786ADD /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
+		6CB428381B97F42D00786ADD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		6CB428391B97F42D00786ADD /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +201,8 @@
 				6CB428301B966EC000786ADD /* Keys.m */,
 				6CB428351B979A5800786ADD /* Reminder.h */,
 				6CB428361B979A5800786ADD /* Reminder.m */,
+				6CB428381B97F42D00786ADD /* Constants.h */,
+				6CB428391B97F42D00786ADD /* Constants.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 				6CB428081B96150400786ADD /* Stack.m in Sources */,
 				6CB428051B960E6000786ADD /* Queue.m in Sources */,
 				6CB428371B979A5800786ADD /* Reminder.m in Sources */,
+				6CB4283A1B97F42D00786ADD /* Constants.m in Sources */,
 				6CB427D71B9509D600786ADD /* ViewController.m in Sources */,
 				6CB427D41B9509D600786ADD /* AppDelegate.m in Sources */,
 				6CB427FC1B9524C400786ADD /* Person.m in Sources */,

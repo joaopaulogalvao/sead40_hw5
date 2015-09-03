@@ -12,12 +12,15 @@
 #import <Parse/Parse.h>
 #import "Reminder.h"
 #import "Constants.h"
+#import <CoreLocation/CoreLocation.h>
+#import "ReminderViewController.h"
 
 
 @interface ViewController ()
 
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property CLLocationCoordinate2D coordinate;
 
 -(void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGesture;
 
@@ -50,6 +53,9 @@
   
   //Show user location on the map
   self.mapView.showsUserLocation = YES;
+  
+  //Handle received notification
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleReceivedNotification:) name:kReminderNotification object:nil];
   
   //Add Gesture recognizer
   self.longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
@@ -99,23 +105,19 @@
   CGPoint longPoint = [self.longPressGestureRecognizer locationInView:self.mapView];
   
   //Convert a point to coordinate
-  CLLocationCoordinate2D coordinate = [self.mapView convertPoint:longPoint toCoordinateFromView:self.mapView];
+  self.coordinate = [self.mapView convertPoint:longPoint toCoordinateFromView:self.mapView];
   
   //NSUInteger numberOfTouches = [self.longPressGestureRecognizer numberOfTouches];
   
   //Log coord infos
   NSLog(@"Long press location was %.0f, %.0f", longPoint.x, longPoint.y);
-  NSLog(@"World coordinate was longitude %f, latitude %f", coordinate.longitude, coordinate.latitude);
+  NSLog(@"World coordinate was longitude %f, latitude %f", self.coordinate.longitude, self.coordinate.latitude);
   
-  //Save Point location to Parse
-  Reminder *reminder = [Reminder object];
-  reminder.name = @"My reminder";
-  reminder.reminderCoord = [PFGeoPoint geoPointWithLatitude:coordinate.latitude longitude:coordinate.longitude];
-  [reminder saveInBackground];
+  
   
   //Place a pin on the map
   MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-  annotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
+  annotation.coordinate = CLLocationCoordinate2DMake(self.coordinate.latitude, self.coordinate.longitude);
   annotation.title = @"My reminder";
   [self.mapView addAnnotation:annotation];
   
@@ -123,9 +125,23 @@
   
 }
 
+#pragma mark - Notification
+-(void)handleReceivedNotification:(NSNotification *)notification {
+  
+  NSLog(@"Notification received");
+  
+
+}
+
 #pragma mark - Location Manager Delegate
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+  
+}
+
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
+  
+   NSLog(@"entered region!");
   
 }
 
@@ -154,12 +170,11 @@
   //NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
   //[dict setValue:arr forKey:@"locations"];
   
-  NSLog(@"JSON representation for dictionary is %@",coorDict);
+  //NSLog(@"JSON representation for dictionary is %@",coorDict);
   
-  NSLog(@"lat: %f, long: %f, speed: %f",location.coordinate.latitude, location.coordinate.longitude, location.speed);
+  //NSLog(@"lat: %f, long: %f, speed: %f",location.coordinate.latitude, location.coordinate.longitude, location.speed);
   
 }
-
 
 
 -(void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
@@ -170,6 +185,18 @@
   }
   
 }
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+  
+  if ([segue.identifier  isEqual: @"toDetail"]) {
+    ReminderViewController *reminderView = segue.destinationViewController;
+    reminderView.myTappedCoord = self.coordinate;
+  }
+  
+}
+
 
 #pragma mark - MKMapViewDelegate
 
@@ -207,16 +234,14 @@
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
   
   NSLog(@"clicked");
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Data" forKey:@"Hello"];
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotification object:self userInfo:userInfo];
-  
-  NSLog(@"notification fired!");
-  
+  //If you fire a notification from here, the other view is not even created yet. It will do nothing.
+    
   [self performSegueWithIdentifier:@"toDetail" sender:self];
     
   
 }
+
 
 
 

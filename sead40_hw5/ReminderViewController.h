@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface ReminderViewController : UIViewController
+
+@property CLLocationCoordinate2D myTappedCoord;
 
 @end

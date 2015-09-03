@@ -82,6 +82,9 @@
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="fireNotification:" destination="5xO-Af-q7Z" eventType="touchUpInside" id="i2t-Ud-6Zk"/>
+                                </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="aYN-Fe-w0P">
                                 <rect key="frame" x="188" y="171" width="224" height="31"/>
@@ -92,12 +95,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Xhm-Mg-vKy" firstAttribute="top" secondItem="aYN-Fe-w0P" secondAttribute="bottom" constant="84" id="C2F-Yf-RKe"/>
+                            <constraint firstItem="aYN-Fe-w0P" firstAttribute="leading" secondItem="acQ-QA-YEJ" secondAttribute="leadingMargin" constant="174" id="C3a-ud-Kva"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aYN-Fe-w0P" secondAttribute="trailing" constant="174" id="FGC-h7-tu5"/>
                             <constraint firstAttribute="centerX" secondItem="Xhm-Mg-vKy" secondAttribute="centerX" id="Rib-3Q-cnd"/>
-                            <constraint firstItem="aYN-Fe-w0P" firstAttribute="top" secondItem="7QQ-xC-CLb" secondAttribute="bottom" constant="107" id="aBP-z5-QLa"/>
                             <constraint firstAttribute="centerY" secondItem="Xhm-Mg-vKy" secondAttribute="centerY" id="n09-g1-RyN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aYN-Fe-w0P" secondAttribute="trailing" constant="174" id="pJK-4X-PRx"/>
-                            <constraint firstItem="aYN-Fe-w0P" firstAttribute="leading" secondItem="acQ-QA-YEJ" secondAttribute="leadingMargin" constant="174" id="xTG-hV-G1u"/>
+                            <constraint firstItem="aYN-Fe-w0P" firstAttribute="top" secondItem="7QQ-xC-CLb" secondAttribute="bottom" constant="107" id="ydk-pH-1g9"/>
                         </constraints>
                     </view>
                 </viewController>

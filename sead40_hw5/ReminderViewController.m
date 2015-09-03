@@ -9,8 +9,13 @@
 #import "ReminderViewController.h"
 #import "Reminder.h"
 #import "Constants.h"
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface ReminderViewController ()
+
+@property(nonatomic, strong)CLLocationManager *locationManager;
+
 
 @end
 
@@ -20,23 +25,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderNotification:) name:kReminderNotification object:nil];
-  
-  PFQuery *pizzaQuery = [Reminder query];
-  
-  [pizzaQuery findObjectsInBackgroundWithBlock:^(NSArray *reminders, NSError *error) {
-    
-    Reminder *firstReminder = [reminders firstObject];
-    
-    NSLog(@"%@",firstReminder.name);
-  }];
-  
-  if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(47.6235, -122.3363) radius:200 identifier:@"Code Fellows"];
-    //[self.locationManager startMonitoringForREgion: region];
-  
-  }
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,16 +32,39 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)reminderNotification:(NSNotification *)notification {
+-(void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+- (IBAction)fireNotification:(id)sender {
+  
   NSLog(@"notification fired!");
-  NSDictionary *userInfo = notification.userInfo;
-  if (userInfo) {
+  
+  //Save Point location to Parse
+  Reminder *reminder = [Reminder object];
+  reminder.name = @"My reminder";
+  reminder.reminderCoord = [PFGeoPoint geoPointWithLatitude:reminder.reminderCoord.latitude longitude:reminder.reminderCoord.longitude];
+  
+  NSLog(@"Fired notification coord: %@",reminder.reminderCoord);
+  
+  [reminder saveInBackground];
+  
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Data" forKey:@"Hello"];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotification object:self userInfo:userInfo];
+  
+  
+  if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
     
-   // NSString *value = userInfo[@"Hello"];
+    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(reminder.reminderCoord.latitude, reminder.reminderCoord.longitude) radius:200 identifier:@"Entered Region"];
+    
+    [self.locationManager startMonitoringForRegion:region];
     
   }
-  
+
 }
+
 
 /*
 #pragma mark - Navigation

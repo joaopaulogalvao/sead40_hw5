@@ -107,6 +107,12 @@
   NSLog(@"Long press location was %.0f, %.0f", longPoint.x, longPoint.y);
   NSLog(@"World coordinate was longitude %f, latitude %f", coordinate.longitude, coordinate.latitude);
   
+  //Save Point location to Parse
+  Reminder *reminder = [Reminder object];
+  reminder.name = @"My reminder";
+  reminder.reminderCoord = [PFGeoPoint geoPointWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+  [reminder saveInBackground];
+  
   //Place a pin on the map
   MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
   annotation.coordinate = CLLocationCoordinate2DMake(coordinate.latitude, coordinate.longitude);
@@ -204,6 +210,8 @@
   NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Data" forKey:@"Hello"];
   
   [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotification object:self userInfo:userInfo];
+  
+  NSLog(@"notification fired!");
   
   [self performSegueWithIdentifier:@"toDetail" sender:self];
     

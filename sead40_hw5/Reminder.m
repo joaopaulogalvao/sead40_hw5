@@ -15,6 +15,7 @@
 @implementation Reminder
 
 @dynamic name;
+@dynamic reminderCoord;
 
 +(NSString * __nonnull)parseClassName{
   

@@ -8,7 +8,7 @@
 
 #import "ReminderViewController.h"
 #import "Reminder.h"
-
+#import "Constants.h"
 
 @interface ReminderViewController ()
 
@@ -20,12 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
   
-  //Takes the place of PFObject, objectWithName
-  Reminder *reminder = [Reminder object];
-  
-  reminder.name = @"Pizza";
-  
-  [reminder saveInBackground];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reminderNotification:) name:kReminderNotification object:nil];
   
   PFQuery *pizzaQuery = [Reminder query];
   
@@ -47,6 +42,17 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)reminderNotification:(NSNotification *)notification {
+  NSLog(@"notification fired!");
+  NSDictionary *userInfo = notification.userInfo;
+  if (userInfo) {
+    
+   // NSString *value = userInfo[@"Hello"];
+    
+  }
+  
 }
 
 /*

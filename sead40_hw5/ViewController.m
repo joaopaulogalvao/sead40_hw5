@@ -137,7 +137,6 @@
   NSLog(@"World coordinate was longitude %f, latitude %f", self.coordinate.longitude, self.coordinate.latitude);
   
   
-  
   //Place a pin on the map
   MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
   annotation.coordinate = CLLocationCoordinate2DMake(self.coordinate.latitude, self.coordinate.longitude);
@@ -151,10 +150,7 @@
 #pragma mark - Notification
 -(void)handleReceivedNotification:(NSNotification *)notification {
   
-  
   Reminder *myReceivedReminder = notification.userInfo[@"Reminder"];
-  
-  
   
   MKCircle *circle = [MKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(myReceivedReminder.reminderCoord.latitude, myReceivedReminder.reminderCoord.longitude) radius:200];
   
@@ -168,7 +164,6 @@
     
   }
 
-  
   [self.mapView addOverlay:circle];
   
 }
@@ -184,7 +179,6 @@
   
    NSLog(@"Entered region!");
   
-
   
 }
 

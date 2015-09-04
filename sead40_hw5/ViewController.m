@@ -46,7 +46,7 @@
   self.mapView.delegate = self;
   
   //After checking the location fires the delegate method didChangeAuthorizationStatus
-  [self.locationManager requestWhenInUseAuthorization]; // change to always
+  [self.locationManager requestAlwaysAuthorization]; // change to always
   
   //Update location
   [self.locationManager startUpdatingLocation];
@@ -128,20 +128,40 @@
 #pragma mark - Notification
 -(void)handleReceivedNotification:(NSNotification *)notification {
   
-  NSLog(@"Notification received");
   
+  Reminder *myReceivedReminder = notification.userInfo[@"Reminder"];
+  
+  
+  
+  MKCircle *circle = [MKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(myReceivedReminder.reminderCoord.latitude, myReceivedReminder.reminderCoord.longitude) radius:200];
+  
+  if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
+    
+    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(myReceivedReminder.reminderCoord.latitude, myReceivedReminder.reminderCoord.longitude) radius:200 identifier:@"Entered Region"];
+    
+    [self.locationManager startMonitoringForRegion:region];
+    //47.6235
+    //-122.3363
+    
+  }
 
+  
+  [self.mapView addOverlay:circle];
+  
 }
 
 #pragma mark - Location Manager Delegate
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+
   
 }
 
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
   
-   NSLog(@"entered region!");
+   NSLog(@"Entered region!");
+  
+
   
 }
 
@@ -199,7 +219,14 @@
 
 
 #pragma mark - MKMapViewDelegate
-
+-(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
+  
+  MKCircleRenderer *circleRenderer = [[MKCircleRenderer alloc]initWithOverlay:overlay];
+  
+  circleRenderer.strokeColor = [UIColor blueColor];
+  
+  return circleRenderer;
+}
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
   
   //Don't show annotation for current user

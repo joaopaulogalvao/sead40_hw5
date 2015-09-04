@@ -11,6 +11,7 @@
 #import "Constants.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import "Person.h"
 
 @interface ReminderViewController ()
 
@@ -50,18 +51,10 @@
   
   [reminder saveInBackground];
   
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Data" forKey:@"Hello"];
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:reminder forKey:@"Reminder"]; //withObjects for more than one
   
   [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotification object:self userInfo:userInfo];
   
-  
-  if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
-    
-    CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(self.myTappedCoord.latitude, self.myTappedCoord.longitude) radius:200 identifier:@"Entered Region"];
-    
-    [self.locationManager startMonitoringForRegion:region];
-    
-  }
 
 }
 

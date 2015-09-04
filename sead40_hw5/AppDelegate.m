@@ -10,6 +10,7 @@
 #import "Keys.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import "Reminder.h"
 
 @interface AppDelegate ()
 
@@ -21,9 +22,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.
   
+  
+  [Reminder registerSubclass];
+  
   // Initialize Parse.
   [Parse setApplicationId:kApplicationID
                 clientKey:kClientKey];
+  
   
   return YES;
 }

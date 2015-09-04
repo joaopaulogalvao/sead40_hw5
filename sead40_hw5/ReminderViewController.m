@@ -7,8 +7,16 @@
 //
 
 #import "ReminderViewController.h"
+#import "Reminder.h"
+#import "Constants.h"
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import "Person.h"
 
 @interface ReminderViewController ()
+
+@property(nonatomic, strong)CLLocationManager *locationManager;
+
 
 @end
 
@@ -17,12 +25,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+  
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
+- (IBAction)fireNotification:(id)sender {
+  
+  NSLog(@"notification fired!");
+  
+  //Save Point location to Parse
+  Reminder *reminder = [Reminder object];
+  reminder.name = @"My reminder";
+  reminder.reminderCoord = [PFGeoPoint geoPointWithLatitude:self.myTappedCoord.latitude longitude:self.myTappedCoord.longitude];
+  
+  NSLog(@"Fired notification coord: %@",reminder.reminderCoord);
+  
+  [reminder saveInBackground];
+  
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:reminder forKey:@"Reminder"]; //withObjects for more than one
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotification object:self userInfo:userInfo];
+  
+
+}
+
 
 /*
 #pragma mark - Navigation

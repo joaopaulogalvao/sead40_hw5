@@ -64,6 +64,15 @@
 
   [self.mapView addGestureRecognizer:self.longPressGestureRecognizer];
   
+  //Create the signup view
+  PFSignUpViewController *signupViewController = [[PFSignUpViewController alloc] init];
+  signupViewController.fields = PFSignUpFieldsUsernameAndPassword | PFSignUpFieldsSignUpButton | PFSignUpFieldsDismissButton;
+  
+  //Set ourselves as the delegate
+  [signupViewController setDelegate:self];
+  
+  //Present the view controller
+  [self presentViewController:signupViewController animated:true completion:nil];
   
 }
 
@@ -71,6 +80,20 @@
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
   
+}
+
+#pragma mark - Parse signup delegate
+-(void)signUpViewController:(PFSignUpViewController * __nonnull)signUpController didSignUpUser:(PFUser * __nonnull)user{
+  
+  //Dismiss the signupView after signup
+  [self dismissViewControllerAnimated:true completion:nil];
+  
+}
+
+-(void)logInViewController:(PFLogInViewController * __nonnull)logInController didLogInUser:(PFUser * __nonnull)user{
+  
+  //Dismiss the loginView after login
+  [self dismissViewControllerAnimated:true completion:nil];
 }
 
 

@@ -40,6 +40,12 @@
                                             <action selector="showSydney:" destination="vXZ-lx-hvc" id="cib-sX-4U6"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="B2S-x3-SXf"/>
+                                    <barButtonItem title="Logout" id="KVd-Af-RG3">
+                                        <connections>
+                                            <action selector="logout:" destination="vXZ-lx-hvc" id="nAs-iW-dCQ"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

@@ -143,9 +143,22 @@
   annotation.title = @"My reminder";
   [self.mapView addAnnotation:annotation];
   
+}
+
+- (IBAction)logout:(id)sender {
   
+  //Logout user
+  [PFUser logOut];
+  
+  UIAlertView *logoutAlert = [[UIAlertView alloc] initWithTitle:@"Logged Out!"
+                                                       message:@"You were logged out."
+                                                      delegate:self
+                                             cancelButtonTitle:@"Ok"
+                                             otherButtonTitles: nil];
+  [logoutAlert show];
   
 }
+
 
 #pragma mark - Notification
 -(void)handleReceivedNotification:(NSNotification *)notification {

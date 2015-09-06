@@ -143,9 +143,22 @@
   annotation.title = @"My reminder";
   [self.mapView addAnnotation:annotation];
   
+}
+
+- (IBAction)logout:(id)sender {
   
+  //Logout user
+  [PFUser logOut];
+  
+  UIAlertView *logoutAlert = [[UIAlertView alloc] initWithTitle:@"Logged Out!"
+                                                       message:@"You were logged out."
+                                                      delegate:self
+                                             cancelButtonTitle:@"Ok"
+                                             otherButtonTitles: nil];
+  [logoutAlert show];
   
 }
+
 
 #pragma mark - Notification
 -(void)handleReceivedNotification:(NSNotification *)notification {
@@ -241,6 +254,8 @@
   MKCircleRenderer *circleRenderer = [[MKCircleRenderer alloc]initWithOverlay:overlay];
   
   circleRenderer.strokeColor = [UIColor blueColor];
+  circleRenderer.lineWidth = 2.0;
+  circleRenderer.alpha = 0.5;
   
   return circleRenderer;
 }

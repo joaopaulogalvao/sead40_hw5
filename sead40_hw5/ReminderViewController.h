@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface ReminderViewController : UIViewController
+@interface ReminderViewController : UIViewController<UITextFieldDelegate>
 
 @property CLLocationCoordinate2D myTappedCoord;
 

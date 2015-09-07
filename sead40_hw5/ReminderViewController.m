@@ -16,6 +16,7 @@
 @interface ReminderViewController ()
 
 @property(nonatomic, strong)CLLocationManager *locationManager;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldReminder;
 
 
 @end
@@ -25,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+  
+  //Set text fiel delegate
+  self.textFieldReminder.delegate = self;
   
 }
 
@@ -44,7 +48,7 @@
   
   //Save Point location to Parse
   Reminder *reminder = [Reminder object];
-  reminder.name = @"My reminder";
+  reminder.name = self.textFieldReminder.text;
   reminder.reminderCoord = [PFGeoPoint geoPointWithLatitude:self.myTappedCoord.latitude longitude:self.myTappedCoord.longitude];
   
   NSLog(@"Fired notification coord: %@",reminder.reminderCoord);
@@ -55,7 +59,15 @@
   
   [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotification object:self userInfo:userInfo];
   
+}
 
+#pragma mark - UITextFieldDelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+  
+  [textField resignFirstResponder];
+  
+  return true;
+  
 }
 
 

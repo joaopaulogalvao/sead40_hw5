@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property CLLocationCoordinate2D coordinate;
+@property (nonatomic, strong) MKPointAnnotation *annotationPin;
 
 -(void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGesture;
 
@@ -41,12 +42,12 @@
   //Init Location Manager
   self.locationManager = [[CLLocationManager alloc]init];
   
+  //After checking the location fires the delegate method didChangeAuthorizationStatus
+  [self.locationManager requestAlwaysAuthorization]; // change to always
+  
   //Set the delegate
   self.locationManager.delegate = self;
   self.mapView.delegate = self;
-  
-  //After checking the location fires the delegate method didChangeAuthorizationStatus
-  [self.locationManager requestAlwaysAuthorization]; // change to always
   
   //Update location
   [self.locationManager startUpdatingLocation];
@@ -63,16 +64,6 @@
   self.longPressGestureRecognizer.minimumPressDuration = 0.7;
 
   [self.mapView addGestureRecognizer:self.longPressGestureRecognizer];
-  
-  //Create the signup view
-  PFSignUpViewController *signupViewController = [[PFSignUpViewController alloc] init];
-  signupViewController.fields = PFSignUpFieldsUsernameAndPassword | PFSignUpFieldsSignUpButton | PFSignUpFieldsDismissButton;
-  
-  //Set ourselves as the delegate
-  [signupViewController setDelegate:self];
-  
-  //Present the view controller
-  [self presentViewController:signupViewController animated:true completion:nil];
   
 }
 
@@ -138,12 +129,40 @@
   
   
   //Place a pin on the map
-  MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-  annotation.coordinate = CLLocationCoordinate2DMake(self.coordinate.latitude, self.coordinate.longitude);
-  annotation.title = @"My reminder";
-  [self.mapView addAnnotation:annotation];
+  //MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+  self.annotationPin = [[MKPointAnnotation alloc] init];
+  self.annotationPin.coordinate = CLLocationCoordinate2DMake(self.coordinate.latitude, self.coordinate.longitude);
+  self.annotationPin.title = @"Add your reminder";
+  [self.mapView addAnnotation:self.annotationPin];
   
 }
+- (IBAction)performSignup:(id)sender {
+  
+  //Create the signup view
+  PFSignUpViewController *signupViewController = [[PFSignUpViewController alloc] init];
+  signupViewController.fields = PFSignUpFieldsUsernameAndPassword | PFSignUpFieldsSignUpButton | PFSignUpFieldsDismissButton;
+  
+  //Set ourselves as the delegate
+  [signupViewController setDelegate:self];
+  
+  //Present the view controller
+  [self presentViewController:signupViewController animated:true completion:nil];
+  
+}
+
+- (IBAction)performLogin:(id)sender {
+  
+  //Create the signup view
+  PFLogInViewController *loginViewController = [[PFLogInViewController alloc] init];
+  loginViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsDismissButton | PFLogInFieldsPasswordForgotten;
+  
+  //Set ourselves as the delegate
+  [loginViewController setDelegate:self];
+  
+  [self presentViewController:loginViewController animated:true completion:nil];
+  
+}
+
 
 - (IBAction)logout:(id)sender {
   
@@ -164,9 +183,17 @@
 -(void)handleReceivedNotification:(NSNotification *)notification {
   
   Reminder *myReceivedReminder = notification.userInfo[@"Reminder"];
+  NSString *myReceivedReminderTitle = notification.userInfo[@"ReminderTitle"];
   
+  self.annotationPin.title = myReceivedReminderTitle;
+  
+  
+  
+  
+  //Draw a Circle around the annotation
   MKCircle *circle = [MKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(myReceivedReminder.reminderCoord.latitude, myReceivedReminder.reminderCoord.longitude) radius:200];
   
+  //Monitor region
   if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
     
     CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(myReceivedReminder.reminderCoord.latitude, myReceivedReminder.reminderCoord.longitude) radius:200 identifier:@"Entered Region"];
@@ -174,7 +201,6 @@
     [self.locationManager startMonitoringForRegion:region];
     //47.6235
     //-122.3363
-    
   }
 
   [self.mapView addOverlay:circle];
@@ -191,6 +217,18 @@
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region{
   
    NSLog(@"Entered region!");
+  
+
+  UILocalNotification *notification = [[UILocalNotification alloc] init];
+  
+  notification.alertTitle = @"Reminder";
+  notification.alertBody = @"You've entered your reminder region.";
+  
+  NSDate *now = [NSDate date];
+  NSDate *fireDate = [NSDate dateWithTimeInterval:5.0 sinceDate:now];
+  notification.fireDate = fireDate;
+  
+  [[UIApplication sharedApplication] scheduleLocalNotification:notification];
   
   
 }
@@ -299,6 +337,10 @@
   [self performSegueWithIdentifier:@"toDetail" sender:self];
     
   
+}
+
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+  self.annotationPin = view.annotation;
 }
 
 

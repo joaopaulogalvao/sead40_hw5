@@ -12,10 +12,12 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "Person.h"
+#import "ViewController.h"
 
 @interface ReminderViewController ()
 
 @property(nonatomic, strong)CLLocationManager *locationManager;
+@property (weak, nonatomic) IBOutlet UITextField *textFieldReminder;
 
 
 @end
@@ -25,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+  
+  //Set text fiel delegate
+  self.textFieldReminder.delegate = self;
   
 }
 
@@ -44,18 +49,33 @@
   
   //Save Point location to Parse
   Reminder *reminder = [Reminder object];
-  reminder.name = @"My reminder";
+  reminder.name = self.textFieldReminder.text;
   reminder.reminderCoord = [PFGeoPoint geoPointWithLatitude:self.myTappedCoord.latitude longitude:self.myTappedCoord.longitude];
   
   NSLog(@"Fired notification coord: %@",reminder.reminderCoord);
   
   [reminder saveInBackground];
   
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:reminder forKey:@"Reminder"]; //withObjects for more than one
+  NSArray *notificationObjectsArray = [[NSArray alloc]initWithObjects:reminder,self.textFieldReminder.text, nil];
+  NSArray *notificationKeysArray = [[NSArray alloc] initWithObjects:@"Reminder",@"ReminderTitle", nil];
+  
+   NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:notificationObjectsArray forKeys:notificationKeysArray];
+  
+  //NSDictionary *userInfo = [NSDictionary dictionaryWithObject:reminder forKey:@"Reminder"]; //withObjects for more than one
   
   [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotification object:self userInfo:userInfo];
   
+  [self.navigationController popToRootViewControllerAnimated:true];
+  
+}
 
+#pragma mark - UITextFieldDelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+  
+  [textField resignFirstResponder];
+  
+  return true;
+  
 }
 
 

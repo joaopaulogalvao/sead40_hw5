@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "Person.h"
+#import "ViewController.h"
 
 @interface ReminderViewController ()
 
@@ -55,9 +56,16 @@
   
   [reminder saveInBackground];
   
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:reminder forKey:@"Reminder"]; //withObjects for more than one
+  NSArray *notificationObjectsArray = [[NSArray alloc]initWithObjects:reminder,self.textFieldReminder.text, nil];
+  NSArray *notificationKeysArray = [[NSArray alloc] initWithObjects:@"Reminder",@"ReminderTitle", nil];
+  
+   NSDictionary *userInfo = [NSDictionary dictionaryWithObjects:notificationObjectsArray forKeys:notificationKeysArray];
+  
+  //NSDictionary *userInfo = [NSDictionary dictionaryWithObject:reminder forKey:@"Reminder"]; //withObjects for more than one
   
   [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotification object:self userInfo:userInfo];
+  
+  [self.navigationController popToRootViewControllerAnimated:true];
   
 }
 

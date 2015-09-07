@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGestureRecognizer;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property CLLocationCoordinate2D coordinate;
+@property (nonatomic, strong) MKPointAnnotation *annotationPin;
 
 -(void)handleLongPressGesture:(UILongPressGestureRecognizer *)longPressGesture;
 
@@ -128,10 +129,11 @@
   
   
   //Place a pin on the map
-  MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-  annotation.coordinate = CLLocationCoordinate2DMake(self.coordinate.latitude, self.coordinate.longitude);
-  annotation.title = @"Add your reminder";
-  [self.mapView addAnnotation:annotation];
+  //MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+  self.annotationPin = [[MKPointAnnotation alloc] init];
+  self.annotationPin.coordinate = CLLocationCoordinate2DMake(self.coordinate.latitude, self.coordinate.longitude);
+  self.annotationPin.title = @"Add your reminder";
+  [self.mapView addAnnotation:self.annotationPin];
   
 }
 - (IBAction)performSignup:(id)sender {
@@ -181,9 +183,17 @@
 -(void)handleReceivedNotification:(NSNotification *)notification {
   
   Reminder *myReceivedReminder = notification.userInfo[@"Reminder"];
+  NSString *myReceivedReminderTitle = notification.userInfo[@"ReminderTitle"];
   
+  self.annotationPin.title = myReceivedReminderTitle;
+  
+  
+  
+  
+  //Draw a Circle around the annotation
   MKCircle *circle = [MKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(myReceivedReminder.reminderCoord.latitude, myReceivedReminder.reminderCoord.longitude) radius:200];
   
+  //Monitor region
   if ([CLLocationManager isMonitoringAvailableForClass:[CLCircularRegion class]]) {
     
     CLCircularRegion *region = [[CLCircularRegion alloc]initWithCenter:CLLocationCoordinate2DMake(myReceivedReminder.reminderCoord.latitude, myReceivedReminder.reminderCoord.longitude) radius:200 identifier:@"Entered Region"];
@@ -191,7 +201,6 @@
     [self.locationManager startMonitoringForRegion:region];
     //47.6235
     //-122.3363
-    
   }
 
   [self.mapView addOverlay:circle];
@@ -328,6 +337,10 @@
   [self performSegueWithIdentifier:@"toDetail" sender:self];
     
   
+}
+
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+  self.annotationPin = view.annotation;
 }
 
 

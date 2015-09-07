@@ -16,6 +16,7 @@
 
 
 @property(nonatomic, strong)CLLocationManager *locationManager;
+@property(nonatomic, strong)NSString *addedReminderTitle;
 
 - (IBAction)showLA:(id)sender;
 - (IBAction)showSeattle:(id)sender;

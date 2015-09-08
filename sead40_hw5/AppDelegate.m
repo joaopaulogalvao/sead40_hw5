@@ -12,6 +12,7 @@
 #import <ParseUI/ParseUI.h>
 #import "Reminder.h"
 #import "Constants.h"
+#import "ReminderViewController.h"
 
 @interface AppDelegate ()
 
@@ -49,6 +50,21 @@
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification{
   
   NSLog(@"Local reminder notification!");
+  
+  UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+  
+  UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+  
+  ReminderViewController *controller = (ReminderViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"reminderView"];
+  
+  [navigationController pushViewController:controller animated:YES];
+  
+//  ReminderViewController *reminderView = [[ReminderViewController alloc]init];
+//  
+//  NSDictionary *viewDict = [NSDictionary dictionaryWithObject:reminderView forKey:@"Reminder"];
+//  
+//  [[NSNotificationCenter defaultCenter] postNotificationName:kReminderNotification object:self userInfo:viewDict];
+  
   
 }
 

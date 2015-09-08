@@ -156,8 +156,23 @@
   PFLogInViewController *loginViewController = [[PFLogInViewController alloc] init];
   loginViewController.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsDismissButton | PFLogInFieldsPasswordForgotten;
   
+  PFLogInView *loginView = [[PFLogInView alloc]init];
+  
   //Set ourselves as the delegate
   [loginViewController setDelegate:self];
+  
+  UILabel *logoLabel = [[UILabel alloc]init];
+  logoLabel.text = @"Homework 6";
+  
+  loginView.logo = logoLabel;
+
+  [loginViewController.view insertSubview:loginView atIndex:1];
+  
+  UIImageView *backgroundImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"welcome_bg"]];
+  
+  [loginViewController.view insertSubview:logoLabel atIndex:0];
+  
+  [loginViewController.view insertSubview:backgroundImage atIndex:0];
   
   [self presentViewController:loginViewController animated:true completion:nil];
   
